@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
 import { useLocation , useNavigate} from "react-router-dom"
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 export default function Header () {
+    
+    const [pageState, setPageState] = useState("Sign In");
 
     //step 1
     const location = useLocation();
@@ -10,11 +14,25 @@ export default function Header () {
     const navigate = useNavigate();
 
     //step 2
-    const pathMathRoute = (route) => {
+    const pathMachRoute = (route) => {
         if(route === location.pathname){
             return true;
         }
     }
+
+   
+
+    const auth = getAuth();
+    //you want to use use effect to check the changes of auth.
+    useEffect(()=>{
+        onAuthStateChanged(auth,(user)=>{
+            if(user){
+                setPageState("Profile");
+            }else{
+                setPageState("Sign In");
+            }
+        });
+    },[auth]); //So we're going to call a function each time this Auth change.
 
     return(
         <div className="bg-white border-b shadow-sm sticky top-0 z-50">
@@ -24,9 +42,11 @@ export default function Header () {
                 </div>
                 <div>
                     <ul className="flex space-x-10">
-                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMathRoute("/") && "text-black !border-b-red-500"}`} onClick={()=>navigate("/")}>Home</li>
-                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMathRoute("/offers") && "text-black !border-b-red-500"}`} onClick={()=>navigate("/offers")}>Offers</li>
-                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMathRoute("/sign-in") && "text-black !border-b-red-500"}`} onClick={()=>navigate("/sign-in")}>Sign In</li>
+                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMachRoute("/") && "text-black !border-b-red-500"}`} onClick={()=>navigate("/")}>Home</li>
+                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMachRoute("/offers") && "text-black !border-b-red-500"}`} onClick={()=>navigate("/offers")}>Offers</li>
+                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${(pathMachRoute("/sign-in") || pathMachRoute("/profile")) && "text-black !border-b-red-500"}`} onClick={()=>navigate("/profile")}>
+                            {pageState}
+                        </li>
                     </ul>
                 </div>
             </header>
