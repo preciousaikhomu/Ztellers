@@ -27,7 +27,7 @@ export default function SignIn() {
     }));
   };
 
-  async function onSubmit(e){
+   const onSubmit = async (e) => {
     e.preventDefault();
     try {
       const auth = getAuth()

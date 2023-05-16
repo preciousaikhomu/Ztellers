@@ -44,7 +44,7 @@ const OAuth = () => {
           timestamp: serverTimestamp(),
         })
       }
-      navigate("/")
+      navigate("/");
     } catch (error) {
       toast.error("Could not authorize with Google");
       
