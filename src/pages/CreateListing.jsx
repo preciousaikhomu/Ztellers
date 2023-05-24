@@ -232,6 +232,8 @@ export default function CreateListing() {
       imgUrls,
       geolocation,
       timestamp: serverTimestamp(), //So we want to know when the person submitted the form and the list.
+      //So now we can add another thing and we call it userReF and we know who created this listing so we can get this use a unique ID of the person.
+      userRef: auth.currentUser.uid,
     };
 
     delete formDataCopy.images;
