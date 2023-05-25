@@ -1,6 +1,7 @@
 import { getAuth, updateProfile } from "firebase/auth";
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
@@ -118,6 +119,28 @@ export default function Profile() {
     fetchUserListings();
   }, [auth.currentUser.uid]); //We need to add off that currentUser as a dependency here so we can just copy this one and put it here
 
+  const onDelete = async (listingID) => {
+    if(window.confirm("Are you sure you want to delete?")){
+
+      await deleteDoc(doc(db, "listings", listingID))
+
+      //we need to update listings again.
+      //So we create a constant call it updated listings. 
+      //And we can just use the filters. 
+      //So we have the listings variable and we're going to filter it. 
+      //The filter is going to be to give us the listing, each listing and We want to just Remove the one that has the listing that ID, Not if you want to keep everything except the one with this listing, I'd..
+      const updatedListings = listings.filter(
+        (listing)=> listing.id !== listingID
+      );
+      setListings(updatedListings)
+      toast.success("Successfully deleted the listing!")
+    }
+  }
+
+  const onEdit = (listingID) => {
+    navigate(`/edit-listing/${listingID}`)
+  }
+
   return (
     <div>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
@@ -195,6 +218,8 @@ export default function Profile() {
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  onDelete={()=>onDelete(listing.id)}
+                  onEdit={()=>onEdit(listing.id)}
                 />
               ))}
             </ul>
