@@ -1,6 +1,14 @@
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
-import { useState } from "react";
+import {
+  collection,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
@@ -9,11 +17,16 @@ import { db } from "../firebase";
 import { FcHome } from "react-icons/fc";
 
 import { Link } from "react-router-dom";
+import ListingItem from "../components/ListingItem";
 
 export default function Profile() {
   const auth = getAuth();
   const navigate = useNavigate();
   const [changeDetail, setChangeDetail] = useState(false);
+
+  const [listings, setListings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
@@ -62,6 +75,48 @@ export default function Profile() {
       toast.error("Could not update the profile details");
     }
   };
+
+  useEffect(() => {
+    //create a synchronous function here
+    async function fetchUserListings() {
+      //we need to create a reference so we just say the listing.
+      //Reference is like a address. So the address for this listing is we can use collection, which is coming from Firebase File Store.
+      const listingRef = collection(db, "listings");
+
+      //We can just make a query. Because we want to just get the listings that had that is that the person is created, not the other
+      //So we call the query queue and we can use the query method from fire store.
+      const q = query(
+        listingRef,
+        where("userRef", "==", auth.currentUser.uid),
+        orderBy("timestamp", "desc")
+      );
+
+      //So after the query. We can use getDocs to get the documents.
+      //So we just create another constant and we call it querySnap.
+      //To get the snapshot and we use 'await' to use the 'getDocs'.
+      //We just can pass that query that we have created.
+      const querySnap = await getDocs(q);
+
+      //Now we can create a variable called listings.
+      //From beginning and we can loop through this query, snap and add that listing data to this listing variable, and we can use this variable to show in our website.
+      let listings = [];
+
+      //So we just loop through the querysnap using foreach method.
+      //And for each method is going to give us each document.
+      querySnap.forEach((doc) => {
+        //That listings and we are going to push each the document inside this array.
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      setListings(listings);
+      //So first we want to avoid getting there, showing it inside our profile. But when the data is fetched completely, we want to show it.
+      setLoading(false);
+    }
+    //So when the page is loaded, we're going to call this function as soon as possible.
+    fetchUserListings();
+  }, [auth.currentUser.uid]); //We need to add off that currentUser as a dependency here so we can just copy this one and put it here
 
   return (
     <div>
@@ -116,14 +171,36 @@ export default function Profile() {
               </p>
             </div>
           </form>
-          <button type="submit" className="w-full bg-blue-600 text-white uppercase px-7 py-3 text-sm font-medium rounded shadow-md hover:bg-blue-700 transition ease-in-out duration-150 hover:shadow-lg active:bg-blue-800">
-            <Link to="/create-listing" className="flex justify-center items-center">
-              <FcHome className="mr-2 text-3xl bg-red-200 rounded-full p-1 border-2"/>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white uppercase px-7 py-3 text-sm font-medium rounded shadow-md hover:bg-blue-700 transition ease-in-out duration-150 hover:shadow-lg active:bg-blue-800"
+          >
+            <Link
+              to="/create-listing"
+              className="flex justify-center items-center"
+            >
+              <FcHome className="mr-2 text-3xl bg-red-200 rounded-full p-1 border-2" />
               Sell or rent your home
             </Link>
           </button>
         </div>
       </section>
+      <div className="max-w-6xl px-3 mt-6 mx-auto">
+        {!loading && listings.length > 0 && (
+          <>
+            <h2 className="text-2xl text-center font-semibold mb-6">My Listing</h2>
+            <ul className="sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl-grid-cols-5 ">
+              {listings.map((listing) => (
+                <ListingItem
+                  key={listing.id}
+                  id={listing.id}
+                  listing={listing.data}
+                />
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
     </div>
   );
 }
