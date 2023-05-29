@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
 
@@ -10,13 +10,22 @@ import {
 } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateListing() {  
+export default function CreateListing() {
   const navigate = useNavigate();
+
   const auth = getAuth();
+
   //We're going to add that geolocation hook.
   const [geolocalEnabled, setGeolocalEnabled] = useState(true);
   //console.log(geolocalEnabled);
@@ -24,6 +33,8 @@ export default function CreateListing() {
   //we just create a constant and we call it loading with the function sit loading to change this loading
   //And this is going to be equal to use a state with the initial value of false. after the clicking with make it true
   const [loading, setLoading] = useState(false);
+
+  const [listing, setListing] = useState(null);
 
   const [formData, setFormData] = useState({
     type: "rent",
@@ -58,6 +69,36 @@ export default function CreateListing() {
     longitude,
     images,
   } = formData;
+
+  //We can use the use params to get the ID from the URL.
+  const params = useParams();
+
+  useEffect(() => {
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error("You can't edit this listing ");
+      navigate("/");
+    }
+  }, [auth.currentUser.uid, listing, navigate]);
+
+  //Edit Listing
+  useEffect(() => {
+    setLoading(true);
+
+    const fetchListing = async () => {
+      const docRef = doc(db, "listings", params.listingId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setListing(docSnap.data());
+        setFormData({ ...docSnap.data() });
+        setLoading(false);
+      } else {
+        navigate("/");
+        toast.error("Listing does not exist");
+      }
+    };
+    //we need to call this function here because We cannot Change the use effects function to asynchronous. So we made a synchronous function here and we call it at the bottom.
+    fetchListing();
+  }, [navigate, params.listingId]);
 
   const onChange = (e) => {
     //We need to Have some condition because we have inputs like true and false.
@@ -109,7 +150,6 @@ export default function CreateListing() {
     //First and when everything is finished, you want to set it to false.
     setLoading(true);
     //It consider them as a string, not number. So this statement doesn't work. In order to be sure that is this is number, we can add a plus.
-    
     if (+discountedPrice >= +regularPrice) {
       setLoading(false);
       toast.error("Discounted price need to be less than regular price");
@@ -136,7 +176,6 @@ export default function CreateListing() {
       //We just say geolocation.
       //latitude is equal to the data we get, which is inside the results.
       //So this if this one is exists, then we want to go to the geometry.latitude.
-      
       geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
@@ -160,14 +199,13 @@ export default function CreateListing() {
       //And this is going to give us two things.
       // - 1. One is the resolve.
       // - 2. two is reject resolve is the if it's successful reject if it's we have an error.
-     
       return new Promise((resolve, reject) => {
         //// Create a root reference
         const storage = getStorage();
-        
+
         // Create a ID dynamic
         const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
-        
+
         //Create a reference to 'name.jpg'
         //So the storage reference gets this storage and this is dynamic for us.
         const storageRef = ref(storage, filename);
@@ -213,10 +251,11 @@ export default function CreateListing() {
       //So we passed that "image" that we have.
       //So we get the each image and we just use this function to store it.
       //And if this one is successful. If not, we can catch the error.
-      [...images].map((image) => storeImage(image))).catch((error) => {
-        setLoading(false);
-        toast.error("Images not uploaded");
-        return;
+      [...images].map((image) => storeImage(image))
+    ).catch((error) => {
+      setLoading(false);
+      toast.error("Images not uploaded");
+      return;
     });
 
     //console.log(imgUrls);
@@ -242,10 +281,11 @@ export default function CreateListing() {
     delete formDataCopy.longitude;
     //Going to submit this formdata form, formdatacopy to the database.
     //So we create a document reference.
-    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
-    console.log(docRef);
+    const docRef = doc(db, "listings", params.listingId);
+
+    await updateDoc(docRef, formDataCopy);
     setLoading(false);
-    toast.success("Listing created");
+    toast.success("Listing Edited");
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
@@ -256,7 +296,7 @@ export default function CreateListing() {
 
   return (
     <main className="max-w-md px-2 mx-auto">
-      <h1 className="text-3xl text-center mt-6 font-bold">Create a Listing</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold">Edit Listing</h1>
       <form onSubmit={onSubmit}>
         <p className="text-lg mt-6 font-semibold">Sell / Rent</p>
         <div className="flex">
@@ -561,7 +601,7 @@ export default function CreateListing() {
           type="Submit"
           className="mb-6 w-full text-center px-7 py-3 bg-blue-600 text-white rounded font-medium text-sm uppercase shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg trasition duration-150 ease-in-out"
         >
-          Create Listing
+          Edit Listing
         </button>
       </form>
     </main>
