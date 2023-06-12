@@ -3,7 +3,7 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 import Spinner from "../components/Spinner";
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   EffectFade,
   Autoplay,
@@ -58,7 +58,7 @@ export default function Slider() {
     listings && (
       <>
         <Swiper
-          SwiperSlide={1}
+          swiperslide={1}
           navigation
           pagination={{ type: "progressbar" }}
           effect="fade"
