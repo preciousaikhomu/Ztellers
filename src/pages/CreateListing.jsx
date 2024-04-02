@@ -131,15 +131,23 @@ export default function CreateListing() {
       );
       const data = await response.json();
 
+      try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
+      );
+      const data = await response.json();
+
       if (data.length === 0) {
-        // No geolocation data found, but still save the address
-        location = null;
-        geolocation = { lat: 0, lng: 0 };
-      } else {
-        // Geolocation data found
-        location = data[0];
-        geolocation = { lat: location.lat, lng: location.lon };
+        throw new Error("No results found");
+      }
+
+      geolocation.lat = data[0].lat;
+      geolocation.lng = data[0].lon;
     } catch (error) {
+      setLoading(false);
+      toast.error("Please enter a correct address");
+      return;
+    }catch (error) {
       setLoading(false);
       toast.error("Please enter a correct address");
       return;
