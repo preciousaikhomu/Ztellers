@@ -124,33 +124,23 @@ export default function CreateListing() {
     }
     let geolocation = {};
     let location;
-    if (geolocalEnabled) {
-      //create a response
-      //And the response is going to await and we're going to fetch the API as we are using a await.
+     // Use OpenStreetMap Nominatim API for geocoding
+    try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
       );
-      //We still we get the data, so we get the data which is equal to another await and we're going to convert the data we are getting to the JSON.
       const data = await response.json();
-      console.log(data);
-      //We just say geolocation.
-      //latitude is equal to the data we get, which is inside the results.
-      //So this if this one is exists, then we want to go to the geometry.latitude.
-      
-      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
-      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
-      location = data.status === "ZERO_RESULTS" && undefined;
-
-      //And if this error happens. or the this is a string.
-      if (location === undefined) {
-        setLoading(false);
-        toast.error("Please enter a correct address");
-        return;
+      if (data.length === 0) {
+        throw new Error("No results found");
       }
-    } else {
-      geolocation.lat = latitude;
-      geolocation.lng = longitude;
+
+      geolocation.lat = data[0].lat;
+      geolocation.lng = data[0].lon;
+    } catch (error) {
+      setLoading(false);
+      toast.error("Please enter a correct address");
+      return;
     }
 
     //create this function here, and this function is going to help us to upload each image one.
