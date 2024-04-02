@@ -18,8 +18,8 @@ export default function CreateListing() {
   const navigate = useNavigate();
   const auth = getAuth();
   //We're going to add that geolocation hook.
-  // const [geolocalEnabled, setGeolocalEnabled] = useState(true);
-  //console.log(geolocalEnabled);
+  const [geolocalEnabled, setGeolocalEnabled] = useState(true);
+  console.log(geolocalEnabled);
 
   //we just create a constant and we call it loading with the function sit loading to change this loading
   //And this is going to be equal to use a state with the initial value of false. after the clicking with make it true
@@ -122,36 +122,36 @@ export default function CreateListing() {
       //we just want return. We don't want to continue to this function.
       return;
     }
-    // let geolocation = {};
-    // let location;
-    // if (geolocalEnabled) {
-    //   //create a response
-    //   //And the response is going to await and we're going to fetch the API as we are using a await.
-    //   const response = await fetch(
-    //     `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
-    //   );
-    //   //We still we get the data, so we get the data which is equal to another await and we're going to convert the data we are getting to the JSON.
-    //   const data = await response.json();
-    //   console.log(data);
-    //   //We just say geolocation.
-    //   //latitude is equal to the data we get, which is inside the results.
-    //   //So this if this one is exists, then we want to go to the geometry.latitude.
+    let geolocation = {};
+    let location;
+    if (geolocalEnabled) {
+      //create a response
+      //And the response is going to await and we're going to fetch the API as we are using a await.
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
+      );
+      //We still we get the data, so we get the data which is equal to another await and we're going to convert the data we are getting to the JSON.
+      const data = await response.json();
+      console.log(data);
+      //We just say geolocation.
+      //latitude is equal to the data we get, which is inside the results.
+      //So this if this one is exists, then we want to go to the geometry.latitude.
       
-    //   geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
-    //   geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
+      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
+      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
-    //   location = data.status === "ZERO_RESULTS" && undefined;
+      location = data.status === "ZERO_RESULTS" && undefined;
 
-    //   //And if this error happens. or the this is a string.
-    //   if (location === undefined) {
-    //     setLoading(false);
-    //     toast.error("Please enter a correct address");
-    //     return;
-    //   }
-    // } else {
-    //   geolocation.lat = latitude;
-    //   geolocation.lng = longitude;
-    // }
+      //And if this error happens. or the this is a string.
+      if (location === undefined) {
+        setLoading(false);
+        toast.error("Please enter a correct address");
+        return;
+      }
+    } else {
+      geolocation.lat = latitude;
+      geolocation.lng = longitude;
+    }
 
     //create this function here, and this function is going to help us to upload each image one.
     //To the database (firebase) And this is going to be a synchronous, too, because we want to..
@@ -219,7 +219,7 @@ export default function CreateListing() {
         return;
     });
 
-    //console.log(imgUrls);
+    console.log(imgUrls);
 
     //we just create a copy of our form data copy, for example, we just say formDataCopy.
     //Because we don't want to change the form data, the original one.
@@ -408,7 +408,7 @@ export default function CreateListing() {
         {
           //If this if the geolocation enabled is true, we want to have this form.
           //So we're going to add some ampersand and we're going to have that one here inside this set of parentheses.
-{/*           !geolocalEnabled && (
+          !geolocalEnabled && (
             <div className="flex space-x-6 justify-start items-center mb-6">
               <div className="">
                 <p className="text-lg font-semibold">Latitude</p>
@@ -437,7 +437,7 @@ export default function CreateListing() {
                 />
               </div>
             </div>
-          ) */}
+          )
         }
 
         {
