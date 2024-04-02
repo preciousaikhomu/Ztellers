@@ -147,10 +147,6 @@ export default function CreateListing() {
       setLoading(false);
       toast.error("Please enter a correct address");
       return;
-    }catch (error) {
-      setLoading(false);
-      toast.error("Please enter a correct address");
-      return;
     }
 
     //create this function here, and this function is going to help us to upload each image one.
@@ -207,19 +203,18 @@ export default function CreateListing() {
     //we create a concept and we call it image
     //We're going to wait and we create a promise And for all the images.
     //I actually looked through the images and put them inside the images.
-    const imgUrls = await Promise.all(
-      //This one kind of gives us the each image.
-      //And for each image we're going to upload the image by just calling a function, which is we just call it a storeImage.
-      //So we passed that "image" that we have.
-      //So we get the each image and we just use this function to store it.
-      //And if this one is successful. If not, we can catch the error.
-      [...images].map((image) => storeImage(image))).catch((error) => {
-        setLoading(false);
-        toast.error("Images not uploaded");
-        return;
-    });
-
-    console.log(imgUrls);
+    try {
+  // Use Promise.all to upload all images concurrently and wait for all promises to resolve
+  const imgUrls = await Promise.all(
+    [...images].map((image) => storeImage(image))
+  );
+  
+  console.log(imgUrls);
+} catch (error) {
+  setLoading(false);
+  toast.error("Images not uploaded");
+  return;
+}
 
     //we just create a copy of our form data copy, for example, we just say formDataCopy.
     //Because we don't want to change the form data, the original one.
