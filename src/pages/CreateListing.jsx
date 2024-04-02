@@ -125,11 +125,6 @@ export default function CreateListing() {
     let geolocation = {};
     let location;
      // Use OpenStreetMap Nominatim API for geocoding
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
-      );
-      const data = await response.json();
 
       try {
       const response = await fetch(
@@ -215,7 +210,7 @@ export default function CreateListing() {
         return;
     });
 
-    console.log(imgUrls);
+    // console.log(imgUrls);
     //we just create a copy of our form data copy, for example, we just say formDataCopy.
     //Because we don't want to change the form data, the original one.
 
