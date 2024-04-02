@@ -132,11 +132,13 @@ export default function CreateListing() {
       const data = await response.json();
 
       if (data.length === 0) {
-        throw new Error("No results found");
-      }
-
-      geolocation.lat = data[0].lat;
-      geolocation.lng = data[0].lon;
+        // No geolocation data found, but still save the address
+        location = null;
+        geolocation = { lat: 0, lng: 0 };
+      } else {
+        // Geolocation data found
+        location = data[0];
+        geolocation = { lat: location.lat, lng: location.lon };
     } catch (error) {
       setLoading(false);
       toast.error("Please enter a correct address");
@@ -219,7 +221,7 @@ export default function CreateListing() {
       //So we have the image to respond.
       ...formData,
       imgUrls,
-      // geolocation,
+      geolocation,
       timestamp: serverTimestamp(), //So we want to know when the person submitted the form and the list.
       //So now we can add another thing and we call it userReF and we know who created this listing so we can get this use a unique ID of the person.
       userRef: auth.currentUser.uid,
