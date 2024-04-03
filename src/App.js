@@ -56,7 +56,7 @@ function App() {
           </Route>
 
           <Route path="edit-blog" element={<PrivateRoute/>}>
-            <Route path="/edit-blog/:blogId" element={<EditListing />} />
+            <Route path="/edit-blog/:blogId" element={<EditBlog />} />
           </Route>
           
 
