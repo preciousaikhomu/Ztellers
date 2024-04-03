@@ -27,7 +27,7 @@ export default function CreateBlog() {
   const auth = getAuth();
 
   //We're going to add that geolocation hook.
-  const [geolocalEnabled, setGeolocalEnabled] = useState(true);
+  // const [geolocalEnabled, setGeolocalEnabled] = useState(true);
   //console.log(geolocalEnabled);
 
   //we just create a constant and we call it loading with the function sit loading to change this loading

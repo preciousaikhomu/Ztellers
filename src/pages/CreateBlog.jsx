@@ -211,10 +211,10 @@ export default function CreateBlog() {
         <p className="text-lg mt-6 font-semibold">Title</p>
         <input
           type="text"
-          id="name"
-          value={name}
+          id="title"
+          value={title}
           onChange={onChange}
-          placeholder="Name"
+          placeholder="Title"
           maxLength="100"
           minLength={10}
           required

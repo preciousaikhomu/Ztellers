@@ -14,7 +14,10 @@ import Header from "./components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateListing from "./pages/CreateListing";
+import CreateBlog from "./pages/CreateBlog";
+import EditBlog from "./pages/EditBlog";
 import EditListing from "./pages/EditListing";
+import Blogs from "./pages/Blogs";
 import Listing from "./pages/Listing";
 import Category from "./pages/Category";
 
@@ -38,12 +41,22 @@ function App() {
 
           <Route path="/category/:categoryName/:listingId" element={<Listing />} />
 
+          <Route path="/category/:categoryName/:blogId" element={<Blogs />} />
+
           <Route path="create-listing" element={<PrivateRoute/>}>
             <Route path="/create-listing" element={<CreateListing />} />
           </Route>
 
+          <Route path="create-blog" element={<PrivateRoute/>}>
+            <Route path="/create-blog" element={<CreateBlog />} />
+          </Route>
+
           <Route path="edit-listing" element={<PrivateRoute/>}>
             <Route path="/edit-listing/:listingId" element={<EditListing />} />
+          </Route>
+
+          <Route path="edit-blog" element={<PrivateRoute/>}>
+            <Route path="/edit-blog/:blogId" element={<EditListing />} />
           </Route>
           
 
