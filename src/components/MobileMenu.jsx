@@ -48,13 +48,13 @@ const MobileMenu = () => {
   return (
     <div className='flex md:hidden' onClick={openHamburger}>
       <MobileMenuIconLight />
-      <div ref={modalRef} className="fixed inset-0 h-[100%] w-[50%] mt-[55px] flex items-center justify-center bg-body-light dark:bg-body-dark z-custom-index" id="hamburger" style={{ display: 'none', right: 0, left: 'auto' }}>
+      <div ref={modalRef} className="fixed inset-0 h-[100%] w-[50%] mt-[55px] flex items-center justify-center bg-[#202A54] z-custom-index" id="hamburger" style={{ display: 'none', right: 0, left: 'auto' }}>
         <div className="justify-center flex flex-col w-[100%] mx-[auto] h-[auto] items-center">
           <div className='gap-10 items-center flex flex-col'>
             <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover hover:font-ClashSemiBold  dark:hover:text-link-hover ${pathMachRoute("/") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/")}>Home</li>
-            <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover hover:font-ClashSemiBold  dark:hover:text-link-hover ${pathMachRoute("/about") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/about")}>Ecosystem</li>
-            <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover hover:font-ClashSemiBold dark:hover:text-link-hover ${pathMachRoute("/properties") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/properties")}>About</li>
-            <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover  hover:font-ClashSemiBold  dark:hover:text-link-hover ${pathMachRoute("/offers") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/offers")}>Contact Us</li>
+            <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover hover:font-ClashSemiBold  dark:hover:text-link-hover ${pathMachRoute("/about") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/about")}>About Us</li>
+            <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover hover:font-ClashSemiBold dark:hover:text-link-hover ${pathMachRoute("/properties") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/properties")}>Properties</li>
+            <li className={`text-black dark:text-white text-base font-ClashRegular hover:text-link-hover  hover:font-ClashSemiBold  dark:hover:text-link-hover ${pathMachRoute("/offers") && "text-black !border-b-[#F6D200]"}`} onClick={() => navigate("/offers")}>Offers</li>
           </div>
           {/* Profile Button */}
           <div className='items-center'>
