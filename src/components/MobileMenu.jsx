@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { MobileMenuIconLight } from './icons';
 import { useLocation, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const MobileMenu = () => {
   const modalRef = useRef();
@@ -44,6 +45,17 @@ const MobileMenu = () => {
       hamburger.style.display = "none";
     }
   };
+  const auth = getAuth();
+    //you want to use use effect to check the changes of auth.
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setPageState("Profile");
+            } else {
+                setPageState("Sign In");
+            }
+        });
+    }, [auth]); //So we're going to call a function each time this Auth change.
 
   return (
     <div className='flex md:hidden' onClick={openHamburger}>

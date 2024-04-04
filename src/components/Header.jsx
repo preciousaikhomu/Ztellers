@@ -54,13 +54,13 @@ export default function Header() {
                     </ul>
                 </div>
 
-                <div className="hidden md:flex">
+                <div className="hidden md:flex ">
                     <button className={`bg-[#F6D200] cursor-pointer py-2 px-5 text-sm font-semibold text-white rounded-lg border-b-[3px] border-b-transparent ${(pathMachRoute("/sign-in") || pathMachRoute("/profile")) && "text-black !border-b-red-500"}`} onClick={() => navigate("/profile")}>
                         {pageState}
                     </button>
                 </div>
 
-                <div>
+                <div className='flex md:hidden'>
                     <MobileMenu  />
                 </div>
             </header>
