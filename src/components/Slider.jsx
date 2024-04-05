@@ -77,7 +77,7 @@ export default function Slider() {
                 }}
                 className="relative w-full h-[500px] overflow-hidden cursor-pointer"
               ></div>
-              <p className="text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl ">
+              <p className="text-[#000] text-[50px] text-center absolute top-3 left-0 right-0 mx-auto font-medium max-w-[90%]  shadow-lg opacity-100 p-2 rounded-lg ">
                 {data.name}
               </p>
               <p className="text-[#f1faee] absolute left-1 bottom-1 font-medium max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-tr-3xl ">
