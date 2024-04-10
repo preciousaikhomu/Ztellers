@@ -21,6 +21,7 @@ import Blogs from "./pages/Blogs";
 import Listing from "./pages/Listing";
 import Category from "./pages/Category";
 import Properties from "./pages/Properties";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/properties" element={<Properties />} />
+          <Route path="/about" element={<About />} />
           <Route path="/category/:categoryName" element={<Category />} />
 
           <Route path="/category/:categoryName/:listingId" element={<Listing />} />
