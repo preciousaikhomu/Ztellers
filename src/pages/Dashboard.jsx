@@ -1,5 +1,4 @@
 import Logo from "../assets/Zteller Logo.png";
-import GrNotification from "../icon";
 export default function Dashboard() {
   return (
     <>
@@ -60,8 +59,8 @@ export default function Dashboard() {
         <div className="bg-black h-[2px] w-ful mt-[30px]"></div>
         <div className="flex justify-between">
           <div className="w-full">
-            <h2>Active Users</h2>
-            <div className="w-[400px]">
+            <h2 className="text-[30px]">Active Users</h2>
+            <div className="w-[400px] mb-5">
               <div className="flex justify-between items-center">
                 <svg
                 className="text-[#2DD88E]"
@@ -77,14 +76,14 @@ export default function Dashboard() {
                   <path d="M8 3c-3.489 0-6.514 2.032-8 5 1.486 2.968 4.511 5 8 5s6.514-2.032 8-5c-1.486-2.968-4.511-5-8-5zM11.945 5.652c0.94 0.6 1.737 1.403 2.335 2.348-0.598 0.946-1.395 1.749-2.335 2.348-1.181 0.753-2.545 1.152-3.944 1.152s-2.763-0.398-3.945-1.152c-0.94-0.6-1.737-1.403-2.335-2.348 0.598-0.946 1.395-1.749 2.335-2.348 0.061-0.039 0.123-0.077 0.185-0.114-0.156 0.427-0.241 0.888-0.241 1.369 0 2.209 1.791 4 4 4s4-1.791 4-4c0-0.481-0.085-0.942-0.241-1.369 0.062 0.037 0.124 0.075 0.185 0.114v0zM8 6.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5z"></path>
                 </svg>
                 <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
-                <div>
+                <div className="w-[200px]">
                     <h2>Emmanuel Udong Udoka</h2>
                     <p>President</p>
                 </div>
                 <button className="bg-gray-300 py-2 px-3 rounded-lg">View Details</button>
               </div>
             </div>
-            <div className="w-[400px]">
+            <div className="w-[400px] mb-5">
               <div className="flex justify-between items-center">
                 <svg
                 className="text-[#2DD88E]"
@@ -100,15 +99,73 @@ export default function Dashboard() {
                   <path d="M8 3c-3.489 0-6.514 2.032-8 5 1.486 2.968 4.511 5 8 5s6.514-2.032 8-5c-1.486-2.968-4.511-5-8-5zM11.945 5.652c0.94 0.6 1.737 1.403 2.335 2.348-0.598 0.946-1.395 1.749-2.335 2.348-1.181 0.753-2.545 1.152-3.944 1.152s-2.763-0.398-3.945-1.152c-0.94-0.6-1.737-1.403-2.335-2.348 0.598-0.946 1.395-1.749 2.335-2.348 0.061-0.039 0.123-0.077 0.185-0.114-0.156 0.427-0.241 0.888-0.241 1.369 0 2.209 1.791 4 4 4s4-1.791 4-4c0-0.481-0.085-0.942-0.241-1.369 0.062 0.037 0.124 0.075 0.185 0.114v0zM8 6.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5z"></path>
                 </svg>
                 <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
-                <div>
-                    <h2>Emmanuel Udong Udoka</h2>
-                    <p>President</p>
+                <div className="w-[200px]">
+                    <h2>Olamide Eghosa Paul</h2>
+                    <p>Financial Secretary</p>
+                </div>
+                <button className="bg-gray-300 py-2 px-3 rounded-lg">View Details</button>
+              </div>
+            </div>
+            <div className="w-[400px] mb-5">
+              <div className="flex justify-between items-center">
+                <svg
+                className="text-[#2DD88E]"
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  version="1.1"
+                  viewBox="0 0 16 16"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M8 3c-3.489 0-6.514 2.032-8 5 1.486 2.968 4.511 5 8 5s6.514-2.032 8-5c-1.486-2.968-4.511-5-8-5zM11.945 5.652c0.94 0.6 1.737 1.403 2.335 2.348-0.598 0.946-1.395 1.749-2.335 2.348-1.181 0.753-2.545 1.152-3.944 1.152s-2.763-0.398-3.945-1.152c-0.94-0.6-1.737-1.403-2.335-2.348 0.598-0.946 1.395-1.749 2.335-2.348 0.061-0.039 0.123-0.077 0.185-0.114-0.156 0.427-0.241 0.888-0.241 1.369 0 2.209 1.791 4 4 4s4-1.791 4-4c0-0.481-0.085-0.942-0.241-1.369 0.062 0.037 0.124 0.075 0.185 0.114v0zM8 6.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5z"></path>
+                </svg>
+                <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
+                <div className="w-[200px]">
+                    <h2>Cherry Adaku Arinze</h2>
+                    <p>Eleco Chairman</p>
+                </div>
+                <button className="bg-gray-300 py-2 px-3 rounded-lg">View Details</button>
+              </div>
+            </div>
+            <div className="w-[400px] mb-5">
+              <div className="flex justify-between items-center">
+                <svg
+                className=""
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  version="1.1"
+                  viewBox="0 0 16 16"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M8 3c-3.489 0-6.514 2.032-8 5 1.486 2.968 4.511 5 8 5s6.514-2.032 8-5c-1.486-2.968-4.511-5-8-5zM11.945 5.652c0.94 0.6 1.737 1.403 2.335 2.348-0.598 0.946-1.395 1.749-2.335 2.348-1.181 0.753-2.545 1.152-3.944 1.152s-2.763-0.398-3.945-1.152c-0.94-0.6-1.737-1.403-2.335-2.348 0.598-0.946 1.395-1.749 2.335-2.348 0.061-0.039 0.123-0.077 0.185-0.114-0.156 0.427-0.241 0.888-0.241 1.369 0 2.209 1.791 4 4 4s4-1.791 4-4c0-0.481-0.085-0.942-0.241-1.369 0.062 0.037 0.124 0.075 0.185 0.114v0zM8 6.5c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5 0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5z"></path>
+                </svg>
+                <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
+                <div className="w-[200px]">
+                    <h2>(Null) Invite new candidate?</h2>
+                    <p>Eleco Chairman</p>
                 </div>
                 <button className="bg-gray-300 py-2 px-3 rounded-lg">View Details</button>
               </div>
             </div>
           </div>
-          <div></div>
+          <div className="w-full">
+          <h2 className="text-[30px]">Top Previous Excos</h2>
+          <div className="w-[400px] mb-5">
+              <div className="flex justify-between items-center">
+                <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
+                <div className="w-[200px]">
+                    <h2>(Null) Invite new candidate?</h2>
+                    <p>Eleco Chairman</p>
+                </div>
+                <button className="bg-gray-300 py-2 px-3 rounded-lg">View Details</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
