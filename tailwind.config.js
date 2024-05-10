@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'sm-custom': { 'max': '767px' },
+        'sm-custom': { 'max': '768px' },
         'lg-custom': { 'max': '1021px' },
       },
       zIndex: {
