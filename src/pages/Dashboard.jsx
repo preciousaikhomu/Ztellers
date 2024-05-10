@@ -2,7 +2,7 @@ import Logo from "../assets/Zteller Logo.png";
 export default function Dashboard() {
   return (
     <>
-      <div className="max-w-[1200px] sm-custom:max-w-[400px] sm-custom:mx-5 mx-auto mt-5">
+      <div className="max-w-[1200px] sm-custom:max-w-[400px] sm-custom:px-5 mx-auto mt-5">
         <div className="logo w-[100px]">
           <img src={Logo} alt="Logo" className="w-[100%]" />
         </div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
-        <div className="bg-black h-[2px] w-ful mt-[30px]"></div>
+        <div className="bg-black h-[2px] w-ful my-[30px]"></div>
         <div className="md:flex sm-custom:flex-wrap justify-between">
           <div className="w-full">
             <h2 className="text-[30px]">Active Users</h2>
@@ -179,6 +179,17 @@ export default function Dashboard() {
 
               </div>
             </div>
+          </div>
+        </div>
+        <div className="bg-black h-[2px] w-ful my-[30px]"></div>
+        <div>
+          <div className="flex justify-center gap-[20px] max-w-[850px] flex-wrap">
+            <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
+            <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
+            <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
+            <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
+            <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
+            <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
           </div>
         </div>
       </div>
