@@ -183,7 +183,7 @@ export default function Dashboard() {
         </div>
         <div className="bg-black h-[2px] w-ful my-[30px]"></div>
         <div>
-          <div className="flex justify-center gap-[20px] max-w-[850px] flex-wrap">
+          <div className="flex justify-center gap-[20px] max-w-[850px] flex-wrap mb-5">
             <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
             <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
             <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>
