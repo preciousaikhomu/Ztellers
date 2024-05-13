@@ -1,3 +1,4 @@
+import Logo from "../assets/Zteller Logo.png";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -40,10 +41,11 @@ export default function Form() {
 
   return (
     <div className="max-w-[768px] mx-auto mt-[20px]">
+      <div><img src={Logo} alt="Logo" className="max-w-[200px] mx-auto mb-5" /></div>
       <div className="form_container">
         <h2 className="text-center">Personal Bio Data</h2>
-        <div className="h-1 w-[300px] bg-black max-w-[300px] mx-auto mt-5">
-          <div className="bg-white border-2 border-black rounded-full relative bottom-3 max-w-[100px] mx-auto h-[30px] w-[30px]"></div>
+        <div className="h-1 w-[300px] bg-[#3bb75e] max-w-[300px] mx-auto mt-5">
+          <div className="bg-white border-2 border-[#3bb75e] rounded-full relative bottom-3 max-w-[100px] mx-auto h-[30px] w-[30px]"></div>
         </div>
         <form onSubmit={handleSubmit} className="mx-[30px]">
           <div className="form-group">
@@ -97,8 +99,8 @@ export default function Form() {
             />
           </div>
           <h2 className="text-center mt-5">Official Category</h2>
-          <div className="h-1 w-[300px] bg-black max-w-[100%] mx-auto mt-5">
-            <div className="bg-white border-2 border-black rounded-full relative bottom-3 max-w-[100px] mx-auto h-[30px] w-[30px]"></div>
+          <div className="h-1 w-[300px] bg-[#3bb75e] max-w-[100%] mx-auto mt-5">
+            <div className="bg-white border-2 border-[#3bb75e] rounded-full relative bottom-3 max-w-[100px] mx-auto h-[30px] w-[30px]"></div>
           </div>
           <div className="form-group">
             <label htmlFor="name of school">Name of School</label>
@@ -150,9 +152,10 @@ export default function Form() {
               className="w-[100%] rounded-t-[25px] rounded-b-[25px]"
             />
           </div>
-          <div className="flex max-w-[300px] justify-between mt-5">
-            <button className="px-5 py-2 bg-gray-300 rounded-lg">Back</button>
-            <button className="px-5 py-2 bg-gray-300 rounded-lg">
+          <div className="flex max-w-[300px] justify-between mt-5 mb-5">
+            <button className="px-5 py-2 bg-[#3bb75e] rounded-lg text-white">Back</button>
+            <button className="px-5 py-2 bg-[#3bb75e] rounded-lg text-white">
+
                 <Link to="/account">Next</Link>
             </button>
           </div>

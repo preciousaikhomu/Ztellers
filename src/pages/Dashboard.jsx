@@ -51,12 +51,12 @@ export default function Dashboard() {
               Faculty of Management Sciences <br />{" "}
             </p>
             <p>Department of Entrepreneurship</p>
-            <button className="bg-gray-300 text-black px-3 py-2 rounded-lg mt-5">
+            <button className="bg-[#3bb75e] text-white px-3 py-2 rounded-lg mt-5">
               View Dashboard
             </button>
           </div>
         </div>
-        <div className="bg-black h-[2px] w-ful my-[30px]"></div>
+        <div className="bg-[#3bb75e] h-[2px] w-ful my-[30px]"></div>
         <div className="md:flex sm-custom:flex-wrap justify-between">
           <div className="w-full">
             <h2 className="text-[30px]">Active Users</h2>
@@ -80,7 +80,7 @@ export default function Dashboard() {
                   <h2>Emmanuel Udong Udoka</h2>
                   <p>President</p>
                 </div>
-                <button className="bg-gray-300 py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
+                <button className="bg-[#3bb75e] text-white py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
               </div>
             </div>
             <div className="w-[400px] sm-custom:w-auto sm-custom:mx-2 mb-5">
@@ -103,7 +103,7 @@ export default function Dashboard() {
                   <h2>Olamide Eghosa Paul</h2>
                   <p>Financial Secretary</p>
                 </div>
-                <button className="bg-gray-300 py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
+                <button className="bg-[#3bb75e] text-white py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
               </div>
             </div>
             <div className="w-[400px] sm-custom:w-auto sm-custom:mx-2 mb-5">
@@ -126,7 +126,7 @@ export default function Dashboard() {
                   <h2>Cherry Adaku Arinze</h2>
                   <p>Eleco Chairman</p>
                 </div>
-                <button className="bg-gray-300 py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
+                <button className="bg-[#3bb75e] text-white py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
               </div>
             </div>
             <div className="w-[400px] sm-custom:w-auto sm-custom:mx-2 mb-5">
@@ -149,7 +149,7 @@ export default function Dashboard() {
                   <h2>(Null) Invite new candidate?</h2>
                   <p>Eleco Chairman</p>
                 </div>
-                <button className="bg-gray-300 py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
+                <button className="bg-[#3bb75e] text-white py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function Dashboard() {
                 <div className="w-[250px]">
                   <h2>(Null) Invite new candidate?</h2>
                   <div className="flex justify-between items-center"><p>Eleco Chairman</p>
-                    <button className="bg-gray-300 py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
+                    <button className="bg-[#3bb75e] text-white py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@ export default function Dashboard() {
                 <div className="w-[250px]">
                   <h2>(Null) Invite new candidate?</h2>
                   <div className="flex justify-between items-center"><p>Eleco Chairman</p>
-                    <button className="bg-gray-300 py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
+                    <button className="bg-[#3bb75e] text-white py-2 px-3 rounded-lg sm-custom:px-2 sm-custom:text-[12px]">View Details</button>
                     </div>
                 </div>
 
@@ -181,7 +181,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="bg-black h-[2px] w-ful my-[30px]"></div>
+        <div className="bg-[#3bb75e] h-[2px] w-ful my-[30px]"></div>
         <div>
           <div className="flex justify-center gap-[20px] max-w-[850px] flex-wrap mb-5">
             <div className="bg-gray-300 h-[250px] w-[250px] rounded-lg"></div>

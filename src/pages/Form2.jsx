@@ -28,8 +28,8 @@ export default function Form2() {
       <div className="form_container">
         <h2 className="text-[30px] text-center">Step 2</h2>
         <h2 className="text-center">Account Details</h2>
-        <div className="h-1 w-[300px] bg-black max-w-[300px] mx-auto mt-5">
-          <div className="bg-white border-2 border-black rounded-full relative bottom-3 max-w-[100px] mx-auto h-[30px] w-[30px]"></div>
+        <div className="h-1 w-[300px] bg-[#3bb75e] max-w-[300px] mx-auto mt-5">
+          <div className="bg-white border-2 border-[#3bb75e] rounded-full relative bottom-3 max-w-[100px] mx-auto h-[30px] w-[30px]"></div>
         </div>
         <form onSubmit={handleSubmit} className="mx-[30px]">
           <div className="form-group">
@@ -56,10 +56,10 @@ export default function Form2() {
             />
           </div>
           <div className="flex max-w-[300px] justify-between mt-5">
-            <button className="px-5 py-2 bg-gray-300 rounded-lg">
+            <button className="px-5 py-2 bg-[#3bb75e] rounded-lg text-white">
                 <Link to="/">Back</Link>
             </button>
-            <button className="px-5 py-2 bg-gray-300 rounded-lg" type="submit">Submit</button>
+            <button className="px-5 py-2 bg-[#3bb75e] rounded-lg text-white" type="submit">Submit</button>
           </div>
         </form>
       </div>
